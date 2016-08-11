@@ -46,29 +46,23 @@
     &lt;arr name="first-components">
       &lt;str>autofilter&lt;/str>
     &lt;/arr>
-    
     &lt;arr name="last-components">
       &lt;str>elevator&lt;/str>
     &lt;/arr>
   &lt;/requestHandler>
-
   &lt;searchComponent name="autofilter" 
                   class="org.apache.solr.handler.component.QueryAutoFilteringComponent" >
     &lt;str name="synonyms">synonyms.txt&lt;/str>
-    
     &lt;arr name="excludeFields">
       &lt;str>related_entity1_ss&lt;/str>
       &lt;str>related_entity2_ss&lt;/str>
     &lt;/arr>
-      
     &lt;arr name="verbModifiers">
       &lt;str>band members,members,member,was in,is in,who's in,who's in the,is in the,was in the:memberOfGroup_ss,groupMembers_ss&lt;/str>
       &lt;str>written,wrote,composed:composer_ss&lt;/str>
       &lt;str>performed,played,sang,recorded:hasPerformer_ss&lt;/str>
-      
       &lt;str>covered,covers:hasPerformer_ss|version_s:Cover|original_performer:_ENTITY_,Recording_Type:Song=>original_performer|composer_ss:_ENTITY_&lt;/str>
     &lt;/arr>
-
   &lt;/searchComponent>
   </pre>
   
