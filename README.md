@@ -172,20 +172,27 @@
   
   2) Use NodeJS to test the app
   
-  Add this script to the nodejs directory (replace [path-to-this-install] with the path on you machine). Call it solr-typeahead.js or something
+  Add this script to the nodejs directory (replace [path-to-this-install] with the path on you machine). 
   
+  Call it solr-multifield-typeahead.js or something
+  
+  <pre>
   var connect = require('connect'),
     serveStatic = require('serve-static');
 
   var app = connect();
   app.use(serveStatic("[path-to-this-install]/solr-angular-typeahead"));
   app.listen(5000);
+  </pre>
   
-  run the script
-  node solr-typeahead.js
+  Run the script:
+  
+  node solr-multifield-typeahead.js
+  
   
   Test the App with Dynamic Boosting:
   
+  <blockquote>
   Open a Browser window to localhost:5000/index.html
   
   You should see the Typeahead Input bar
@@ -199,7 +206,7 @@
   Now Type in 'J' again
   
   The top result should be 'John Lennon' now.
-  
+  </blockquote>
   
   Enjoy :-)
   
