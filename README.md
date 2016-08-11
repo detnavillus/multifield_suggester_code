@@ -179,7 +179,6 @@
   <pre>
   var connect = require('connect'),
     serveStatic = require('serve-static');
-
   var app = connect();
   app.use(serveStatic("[path-to-this-install]/solr-angular-typeahead"));
   app.listen(5000);
