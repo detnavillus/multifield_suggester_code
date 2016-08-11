@@ -35,8 +35,8 @@
      Add the /autofilter request handler configuration elements: (I put these after the /select requestHandler)
      
   <pre>
-  &lt;requestHandler name="/autofilter" class="org.apache.solr.handler.component.SearchHandler">
-    &lt;lst name="defaults">
+  <requestHandler name="/autofilter" class="org.apache.solr.handler.component.SearchHandler">
+    <lst name="defaults">
       &lt;str name="echoParams">explicit&lt;/str>
       &lt;str name="df">name&lt;/str>
     &lt;/lst>
