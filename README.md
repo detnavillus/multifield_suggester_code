@@ -11,17 +11,23 @@
   unzip the ontology_files.zip file
   In the directory where you installed Solr ([path-to-solr-install]) run the following commands (where [path-to-ontology-git] is where you downloaded this github repository.
   
+  <pre>
   cd [path-to-solr-install]
   bin/solr start
   bin/solr create -c MusicOntology
   bin/post -c MusicOntology [path-to-this-install]/ontology_files/*.xml
+  </pre>
   
   Test the collection:
+  
   In a browser go to http://localhost:8983/solr
   
   Select the MusicOntology collection
+  
   Click on the Query tab
-  Issue a *:* query
+  
+  Issue a <pre>*:*</pre> query
+  
   You should get 12408 records
   
 # III: Install Query AutoFilter
@@ -68,7 +74,9 @@
   
   5) restart Solr
     
+     <pre>
      bin/solr restart
+     </pre>
      
   6) Test that the Query Autofilter is working
   
@@ -83,14 +91,18 @@
 
   If you don't have Ant installed, download it and install it from https://ant.apache.org/bindownload.cgi
   
+  <pre>
   cd [path-to-this-install]/suggester-builder
   ant dist
-
+  </pre>
+  
 2) Create MusicOntologySuggester collection on Solr (replace [path-to-solr-install] and [path-to-this-install] with the respective paths on your machine)
 
+  <pre>
   cd [path-to-solr-install]
   bin/solr start
   bin/solr create -c MusicOntologySuggester
+  </pre>
   
 3) Edit the managed-schema file at [path-to-solr-install]/server/solr/MusicOntologySuggester/conf/managed-schema
    Add the following fieldType, field and copyField elements:
@@ -134,17 +146,21 @@
   
 5) restart Solr
 
+  <pre>
   cd [path-to-solr-install]
   bin/solr restart
-
+  </pre>
+  
 6) Run the suggester builder script:
   
   Build the MusicOntologySuggester collection:
   
+  <pre>
   cd [path-to-this-install]
   chmod +x runSuggester.sh
   ./runSuggester.sh
-
+  </pre>
+  
   Test the MusicOntologySuggester collection:
   <blockquote>
   Go to the Solr Admin Console (web browser) at localhost:8983/solr
