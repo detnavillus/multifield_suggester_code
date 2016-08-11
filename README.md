@@ -112,10 +112,8 @@
       &lt;filter class="solr.EnglishPossessiveFilterFactory"/>
     &lt;/analyzer>
   &lt;/fieldType>
-
   &lt;field name="suggest_txt" type="string" indexed="true" stored="true" />
   &lt;field name="suggest_ngram" type="text_suggest_ngram" indexed="true" stored="false" multiValued="false"/>
-
   &lt;copyField source="suggest_txt" dest="suggest_ngram"/>
   </pre>
   
@@ -148,18 +146,25 @@
   ./runSuggester.sh
 
   Test the MusicOntologySuggester collection:
-  
+  <blockquote>
   Go to the Solr Admin Console (web browser) at localhost:8983/solr
+  
   Select the MusicOntologySuggester collection
+  
   Search *:*
+  
   You should get 17020 records
   
   Search for "Jazz Drummers"
+  
   You should get 2 records:
   
+  <pre>
   "Afro-Cuban Jazz Drummers"
   "Jazz Drummers"
-
+  </pre>
+  </blockquote>
+  
 # V: Run the Typeahead Angular JS app
 
   1) Download and Install <a href="https://nodejs.org/en/download/">NodeJS</a> - there may be some dependencies that you will need to install.
