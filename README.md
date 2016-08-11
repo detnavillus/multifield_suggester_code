@@ -26,7 +26,7 @@
   
   Click on the Query tab
   
-  Issue a <pre>*:*</pre> query
+  Issue a &#42;:&#42; query
   
   You should get 12408 records
   
@@ -167,7 +167,7 @@
   
   Select the MusicOntologySuggester collection
   
-  Search *:*
+  Search &#42;:&#42;
   
   You should get 17020 records
   
