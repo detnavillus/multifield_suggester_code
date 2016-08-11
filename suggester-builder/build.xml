@@ -1,0 +1,72 @@
+<project name="solr-suggester" default="dist" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" >
+  <description>Builds Solr Suggester</description>
+  
+  <property name="src.dir" value="src/main/java" />
+  <property name="test.dir" value="src/test" />
+  <property name="res.dir"  value="src/test/resources" />
+  
+  <property name="build.dir" location="${basedir}/build" />
+  <property name="classes.dir" location="${build.dir}/classes" />
+  
+  <property name="ivy.dir" location="${basedir}/ivy"/>
+  <property name="ivy.dep.file" location="ivy.xml" />
+  <property name="ivy.version" value="2.3.0"/>
+  <property name="ivy.lib.dir"  location="${build.dir}/ivy/lib" />
+  
+  <property name="dist.name" value="solr-suggester-builder" />
+  <property name="dist.dir"  location="${basedir}/dist" />
+  <property name="version.number"   value="1.0" />
+  
+  <target name="init" >
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${classes.dir}"/>
+    <mkdir dir="${dist.dir}"/>
+  </target>
+  
+  <target name="compile" depends="init,ivy-retrieve" >
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" >
+      <classpath>
+        <fileset dir="${ivy.lib.dir}" includes="compile/*.jar" />
+      </classpath>
+    </javac>   
+  </target>
+  
+  <target name="dist" depends="compile" description="generate the distribution" >
+      <!-- Create the distribution directory -->
+      <mkdir dir="${dist.dir}"/>
+      <jar jarfile="${dist.dir}/${dist.name}-${version.number}.jar" basedir="${classes.dir}"/>
+  </target>
+  
+  
+  <!-- Ivy -->
+  <condition property="ivy.jar.exists">
+    <or>
+      <available file="${build.dir}/ivy-${ivy.version}.jar"/>
+      <isset property="offline"/>
+    </or>
+  </condition>
+
+  <target name="ivy-download" unless="ivy.jar.exists">
+    <mkdir dir="${build.dir}"/>
+    <get src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar"
+         dest="${build.dir}/ivy-${ivy.version}.jar"
+         usetimestamp="true"/>
+  </target>
+
+  <target name="ivy-init" depends="ivy-download" unless="skip.ivy" description="initialize ivy">
+    <path id="ivy.lib.path">
+      <fileset dir="${build.dir}" includes="ivy-${ivy.version}.jar"/>
+    </path>
+    <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+    <ivy:settings file="${ivy.dir}/ivy-settings.xml"/>
+  </target>
+  
+  <target name="ivy-resolve" depends="ivy-init" >
+    <ivy:resolve />
+  </target>
+  
+  <target name="ivy-retrieve" depends="ivy-resolve" >
+    <ivy:retrieve pattern="${ivy.lib.dir}/[conf]/[artifact]-[revision].[ext]" sync="true" />
+  </target>
+
+</project>

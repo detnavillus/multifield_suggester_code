@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="solrTypeahead">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="http://code.angularjs.org/1.2.9/angular.min.js" type="text/javascript"></script>
+<link href="css/app.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="js/solrTypeahead.js"></script>
+<title>Solr/AngularJS TypeAhead App</title>
+</head>
+<body>
+   <div class="container" ng-controller="TypeAheadController">
+	           
+	<input type="text" ng-model="query" placeholder="{{prompt}}" ng-keydown="selected=false" size=30/><br/> 
+    <div class="items" ng-hide="!query.length || selected">
+	  <div class="item" ng-repeat="doc in suggestions  track by $index" 
+	       ng-click="onItemSelected(doc.suggest_txt)" style="cursor:pointer" 
+	       ng-class="{active:isCurrent($index)}" ng-mouseenter="setCurrent($index)">
+		<p class="title">{{doc.suggest_txt}}</p>
+	  </div>
+    </div>
+    <br/>
+    <div class="result" ng-repeat="doc in docs" ng-hide="!docs" >
+      <p class="doc">{{doc.name}}</p>
+    </div>
+   </div>
+</body>
+</html>

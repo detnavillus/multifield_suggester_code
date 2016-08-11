@@ -1,0 +1,33 @@
+{
+  "name":"Music Ontology",
+  "contentCollection":"MusicOntology",
+  "sourceHost":"http://localhost:8983/solr/",
+  "sourceHandler":"/autofilter",
+  "suggesterCollection":"MusicOntologySuggester",
+  "suggestHost":"http://localhost:8983/solr",
+  "querySuggestField":"suggest_txt",
+  "facetFieldMap": [ { "memberOfGroup_ss":"memberOfGroup_ss" }, { "Composition_Type":"Composition_Type" },
+                     { "Recording_Type":"Recording_Type" }, { "hasPerformer_ss":"hasPerformer_ss" },
+                     { "genres_ss":"genres_ss" }, { "Musician_Type":"Musician_Type" },
+                     { "composer_ss":"composer_ss" } ],
+  "queryCollectors": [
+    {
+      "type":"PivotFacetQueryCollector",
+      "solrHost":"http://localhost:8983/solr/MusicOntology",
+      "fieldPatterns": [
+        "${Recording_Type}s ${hasPerformer_ss} Covered|version_s:Cover",
+        "${original_performer} Songs Covered by ${hasPerformer_ss}",
+        "${original_performer} Songs Covered",
+        "${hasPerformer_ss} ${Recording_Type}s",
+        "${hasPerformer_ss} ${version_s}s",
+        "${groupMembers_ss} ${Musician_Type}s",
+        "${name}",
+        "${genres_ss} ${Musician_Type}s",
+        "${genres_ss} ${Composer_Type}s",
+        "${genres_ss} ${Recording_Type}s",
+        "${composer_ss} ${Composition_Type}s",
+        "${lyricist_ss} ${Composition_Type}s"
+      ]
+    }
+  ]
+}

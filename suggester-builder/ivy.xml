@@ -1,0 +1,18 @@
+<ivy-module version="2.0">
+  <info organisation="com.lucidworks.demo" module="fusion-suggester-prototype"/>
+
+  <configurations defaultconfmapping="default">
+    <conf name="default" extends="compile"/>
+    <conf name="compile"/>
+    <conf name="test" extends="compile" visibility="private"/>
+  </configurations>
+
+  <dependencies>
+    <dependency org="org.slf4j" name="slf4j-api" rev="1.7.6" conf="compile->default"/>
+    <dependency org="javax.servlet" name="servlet-api" rev="2.5" conf="compile->default"/>
+    <dependency org="junit" name="junit" rev="4.11" conf="test->default" />
+    <dependency org="org.apache.solr" name="solr-core" rev="6.0.1" conf="compile->default"/>
+    <dependency org="commons-logging" name="commons-logging" rev="1.1.1" conf="compile->default"/>
+    <dependency org="org.codehaus.jackson" name="jackson-mapper-asl" rev="1.9.13" conf="compile->default"/>
+  </dependencies>
+</ivy-module>
